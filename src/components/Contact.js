@@ -12,19 +12,33 @@ export const Contact = () => {
   const sendEmail = (e) => {
     e.preventDefault();
 
-    emailjs.sendForm('service_2iqw2va', 'template_2uznd5d', form.current, 'ZuWl2vIbIs5-DyUe4')
-      .then((result) => {
-          console.log(result.status);
-          if (result.status == 200) {
-            setStatus({ succes: true, message: 'Message sent successfully'});
-          } else {
-            setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
-          }
+    let x = document.forms["myForm"]["user_name"].value;
+    let y = document.forms["myForm"]["user_email"].value;
+    let z = document.forms["myForm"]["message"].value;
 
-      }, (error) => {
-          console.log(error.text);
-      });
-  };
+    if (x == "") {
+      alert("Name must be filled out");
+      return false;
+    }else if(y == ""){
+      alert("Email must be filled out");
+    }else if(z == ""){
+      alert("Message must be filled out");
+    }else{
+
+        emailjs.sendForm('service_2iqw2va', 'template_2uznd5d', form.current, 'ZuWl2vIbIs5-DyUe4')
+          .then((result) => {
+              console.log(result.status);
+              if (result.status == 200) {
+                setStatus({ succes: true, message: 'Message sent successfully'});
+              } else {
+                setStatus({ succes: false, message: 'Something went wrong, please try again later.'});
+              }
+
+          }, (error) => {
+              console.log(error.text);
+          });
+      };
+    }
 
 
   return (
@@ -44,7 +58,7 @@ export const Contact = () => {
                 <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
                 <h2>Get In Touch</h2>
 
-                <form ref={form} onSubmit={sendEmail}>
+                <form ref={form} name="myForm" onSubmit={sendEmail}>
                   <Row>
                     <Col size={12} sm={6} className="px-1">
                       <input type="text" name="user_name" placeholder="First Name" />

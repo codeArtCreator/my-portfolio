@@ -37,7 +37,7 @@ export const NavBar = () => {
       <Navbar expand="md" className={scrolled ? "scrolled" : ""}>
         <Container>
           <Navbar.Brand href="/">
-            <h2 className="text-white"><a href="https://codeartcreator.github.io/my-portfolio">codeArt</a></h2>
+          <a class="text-decoration-none" href="https://codeartcreator.github.io/my-portfolio"><h2 className="text-white">codeArt</h2></a>
           </Navbar.Brand>
           <Navbar.Toggle aria-controls="basic-navbar-nav">
             <span className="navbar-toggler-icon"></span>
